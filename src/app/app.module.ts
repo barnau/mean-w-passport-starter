@@ -12,12 +12,14 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { MovieComponent } from './components/movie/movie.component';
+import { AuthGuardService } from './guards/auth-guard.service';
 
 const appRoutes: Routes = [
   {
     path: 'movies',
     component: MovieComponent,
-    data: { title: 'Book List' }
+    data: { title: 'Movie List' },
+    canActivate: [AuthGuardService]
   },
   {
     path: 'login',

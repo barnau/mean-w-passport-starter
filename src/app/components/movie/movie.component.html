@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Movie List <button class="btn btn-success" (click)="logout()">Logout</button></h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>Title</th>
+        <th>Director</th>
+        <th>posterLocation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies">
+        <td>{{ movie.location }}</td>
+        <td>{{ movie.title }}</td>
+        <td>{{ movie.director }}</td>
+        <td>{{ movie.posterLocation }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
