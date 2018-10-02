@@ -15,16 +15,20 @@ export class AuthService {
   options: any = {'headers': new HttpHeaders({'Content-Type': 'application/json'})}
   apiBase: string = CommonValues.devApi;
   currentUser: User;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.currentUser = new User();
+   }
 
   login(loginData: LoginData) {
+    debugger;
     return this.http.post(this.apiBase + '/signin', loginData)
     .pipe(tap((data: LoginResponse) => {
       debugger;
       console.log(data);
-      this.currentUser = new User();
+      //this.currentUser = new User();
       this.currentUser.token = data.token;
       this.currentUser.userName = loginData.username;
+      this.currentUser.fullAccess = data.fullAccess;
       localStorage.setItem('jwtToken', data.token);
     }))
     .pipe(catchError(err => { return of(false)}))
@@ -32,6 +36,10 @@ export class AuthService {
 
   isAutheticated() {
     return !! this.currentUser;
+  }
+
+  isAuthorized() {
+    return !! this.currentUser && this.currentUser.fullAccess;
   }
 
   logout() {

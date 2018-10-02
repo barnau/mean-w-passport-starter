@@ -1,17 +1,18 @@
 var express = require('express'),
-    mongoose = require('mongoose'),
+    // mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     api = require('./server/routes/api'),
     config = require('./server/config/database')
 var passport = require('passport');
 var session = require('express-session');
+var mongoose = require('./server/config/connection');
 
 
 //var db = mongoose.connect('mongodb://localhost/bookAPI', {useNewUrlParser: true})
-mongoose.Promise = require('bluebird');
-mongoose.connect(config.database, { promiseLibrary: require('bluebird') })
-  .then(() =>  console.log('connection succesful'))
-  .catch((err) => console.error(err));
+// mongoose.Promise = require('bluebird');
+// mongoose.connect(config.database, { promiseLibrary: require('bluebird') })
+//   .then(() =>  console.log('connection succesful'))
+//   .catch((err) => console.error(err));
 
 var app = express();
 

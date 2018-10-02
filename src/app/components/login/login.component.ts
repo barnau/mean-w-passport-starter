@@ -18,24 +18,13 @@ export class LoginComponent implements OnInit {
   message = '';
   data: any;
 
-  constructor(private http: HttpClient, private router: Router, private auth: AuthService) {
-    }
-
-  // login() {
-  //   this.http.post('http://localhost:3000/api/signin',this.loginData).subscribe(resp => {
-  //     this.data = resp;
-  //     localStorage.setItem('jwtToken', this.data.token);
-  //     this.router.navigate(['movies']);
-  //   }, err => {
-  //     this.message = err.error.msg;
-  //   });
-  // }
+  constructor(private http: HttpClient, private router: Router, private auth: AuthService) {}
 
   login() {
     console.log(this.loginData);
-    debugger;
     this.auth.login(this.loginData)
         .subscribe( resp => {
+          debugger;
           if(resp) {
             this.data = resp;
              this.router.navigate(['movies']);

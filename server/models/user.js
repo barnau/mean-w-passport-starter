@@ -8,8 +8,12 @@ var UserSchema = new Schema({
         unique: true,
         required: true
     },
-  password: {
+    password: {
         type: String,
+        required: true
+    },
+    fullAccess: {
+        type: Boolean,
         required: true
     }
 });
