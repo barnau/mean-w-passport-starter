@@ -19,11 +19,13 @@ router.post('/signup', function(req, res) {
     } else {
       var newUser = new User({
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        fullAccess: false
       });
       // save the user
       newUser.save(function(err) {
         if (err) {
+          console.log(err);
           return res.json({success: false, msg: 'Username already exists.'});
         }
         res.json({success: true, msg: 'Successful created new user.'});
@@ -37,7 +39,7 @@ router.post('/signup', function(req, res) {
       username: req.body.username
     }, function(err, user) {
       if (err) throw err;
-  
+
       if (!user) {
         res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
       } else {
@@ -66,7 +68,7 @@ router.post('/signup', function(req, res) {
         author: req.body.author,
         publisher: req.body.publisher
       });
-  
+
       newMovie.save(function(err) {
         if (err) {
           return res.json({success: false, msg: 'Save movie failed.'});

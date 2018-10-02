@@ -17,7 +17,7 @@ var api = require('./server/routes/api');
 
 mongoose.Promise = require('bluebird');
 mongoose.connect(config.database, { promiseLibrary: require('bluebird') })
-  .then(() =>  console.log('connection succesful'))
+  .then(() =>  console.log('connection succesfull'))
   .catch((err) => console.error(err));
 
 //var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy; //passport set up;
@@ -29,8 +29,8 @@ const port = process.env.PORT || 4200;
 //     clientID: '428998710508-mfdsrog11f5q9tju8jo258pbs6vgandq.apps.googleusercontent.com',
 //     clientSecret: 'KKFsIF4hY5lxa9ovZkhuXlkk',
 //     callbackURL: 'http://localhost:3000/auth/google/callback'
-    
-  
+
+
 //   }, function(req, accessToken, refreshToken, profile, done) {
 //     done(null, profile);
 //   }));
@@ -50,7 +50,7 @@ app.use(passport.session());
 // passport.serializeUser((user, done) => { // passport set up; store user in session
 //     done(null, user)
 // });
-  
+
 // passport.deserializeUser((user, done) => { // passport set up; retrieve user from session
 //     done(null, user)
 // });
@@ -72,7 +72,7 @@ app.use(function(err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-  
+
     // render the error page
     res.status(err.status || 500);
     res.render('error');

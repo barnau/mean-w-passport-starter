@@ -1,3 +1,3 @@
 export const CommonValues: any = {
-    devApi: 'http://localhost:3000/api'
+    devApi: 'http://localhost:3001/api'
 }

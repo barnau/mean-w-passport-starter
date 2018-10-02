@@ -11,12 +11,12 @@ var mongoose = require('./server/config/connection');
 //var db = mongoose.connect('mongodb://localhost/bookAPI', {useNewUrlParser: true})
 // mongoose.Promise = require('bluebird');
 // mongoose.connect(config.database, { promiseLibrary: require('bluebird') })
-//   .then(() =>  console.log('connection succesful'))
+//   .then(() =>  console.log('connection succesfull'))
 //   .catch((err) => console.error(err));
 
 var app = express();
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 

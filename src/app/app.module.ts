@@ -39,7 +39,11 @@ const appRoutes: Routes = [
   { path: '',
     redirectTo: '/movies',
     pathMatch: 'full'
+  },
+  { path: '**',
+    redirectTo: '/movies',
   }
+
 ];
 
 @NgModule({

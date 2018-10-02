@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginData } from '../models/login-data';
 import { CommonValues } from '../common/commonValues';
-import { tap, catchError } from "rxjs/operators";
-import { of } from "rxjs/observable/of";
+import { tap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
 import { User } from '../models/user';
 import { LoginResponse } from '../models/login-response';
 
@@ -25,17 +25,22 @@ export class AuthService {
     .pipe(tap((data: LoginResponse) => {
       debugger;
       console.log(data);
-      //this.currentUser = new User();
+      // this.currentUser = new User();
       this.currentUser.token = data.token;
       this.currentUser.userName = loginData.username;
       this.currentUser.fullAccess = data.fullAccess;
       localStorage.setItem('jwtToken', data.token);
     }))
-    .pipe(catchError(err => { return of(false)}))
+    .pipe(catchError(err => of(false)))
+  }
+
+  signup(loginData: LoginData) {
+    return this.http.post(this.apiBase + '/signup', loginData);
   }
 
   isAutheticated() {
-    return !! this.currentUser;
+    debugger;
+    return !! this.currentUser.token;
   }
 
   isAuthorized() {

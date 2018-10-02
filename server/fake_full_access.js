@@ -1,11 +1,5 @@
 var User = require('./models/user');
-// var mongoose = require('mongoose');
-// var config = require('./config/database');
 
-// mongoose.Promise = require('bluebird');
-// mongoose.connect(config.database, { promiseLibrary: require('bluebird') })
-//   .then(() =>  console.log('connection succesful'))
-//   .catch((err) => console.error(err));
 var mongoose = require('./config/connection');
 
   var adminUser = User({
@@ -13,9 +7,10 @@ var mongoose = require('./config/connection');
       password: 'fullaccess',
       fullAccess: true
   });
-  
+
 
   User.findOne({username: adminUser.username}, (err, user) => {
+    debugger;
     if(err) {
         adminUser.save((err) => {
             if(err) {
@@ -24,8 +19,9 @@ var mongoose = require('./config/connection');
                 console.log('Created user.')
             }
         })
+    } else {
+      console.log('User already exists: ' + adminUser.username)
     }
-    console.log('User already exists. ' + user.username)
   })
 
 //   User.findOne({username: 'blainearnau@gmail.com'}, (err, user) => {
@@ -43,6 +39,12 @@ var mongoose = require('./config/connection');
   var users = User.find({}, (err, users) => {
       console.log(' ')
       console.log('Here are all users..')
+
+      if(err) {
+        console.log('No users found')
+        return;
+      }
+
       users.forEach((user) => {
         console.log('username:' + user.username);
         console.log('full access:' + user.fullAccess);
@@ -57,5 +59,5 @@ var mongoose = require('./config/connection');
         }
         })
   });
-  
+
 
