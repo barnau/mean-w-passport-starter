@@ -18,8 +18,8 @@ export class MyNavComponent {
     
   constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService) {}
 
-  showSideNav() {
-    return this.auth.isAuthorized();
+  logout() {
+    this.auth.logout();
   }
   
   }

@@ -24,6 +24,13 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Mean Starter</span>
+      <span class="fill-remaining-space"></span>
+      <button mat-button *ngIf="auth.isAuthenticated()" [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+        <button (click)="logout()" mat-menu-item>Logout</button>
+      </mat-menu>
     </mat-toolbar>
   </mat-sidenav-content>
 </mat-sidenav-container>

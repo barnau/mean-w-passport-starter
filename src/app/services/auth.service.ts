@@ -6,6 +6,7 @@ import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { User } from '../models/user';
 import { LoginResponse } from '../models/login-response';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,8 @@ export class AuthService {
 
   options: any = {'headers': new HttpHeaders({'Content-Type': 'application/json'})}
   apiBase: string = CommonValues.devApi;
-  currentUser: User;
-  constructor(private http: HttpClient) {
-    this.currentUser = new User();
+  currentUser: User = new User();
+  constructor(private http: HttpClient, private router: Router) {
    }
 
   login(loginData: LoginData) {
@@ -25,7 +25,6 @@ export class AuthService {
     .pipe(tap((data: LoginResponse) => {
       debugger;
       console.log(data);
-      // this.currentUser = new User();
       this.currentUser.token = data.token;
       this.currentUser.userName = loginData.username;
       this.currentUser.fullAccess = data.fullAccess;
@@ -38,8 +37,7 @@ export class AuthService {
     return this.http.post(this.apiBase + '/signup', loginData);
   }
 
-  isAutheticated() {
-    debugger;
+  isAuthenticated() {
     return !! this.currentUser.token;
   }
 
@@ -48,6 +46,9 @@ export class AuthService {
   }
 
   logout() {
-    this.currentUser = undefined;
+    this.currentUser.fullAccess = false;
+    this.currentUser.token = undefined;
+    this.currentUser.userName = undefined;
+    this.router.navigate(['login']);
   }
 }

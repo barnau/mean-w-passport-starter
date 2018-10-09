@@ -13,7 +13,7 @@ export class AuthGuardService {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
 
-    if (this.authService.isAutheticated()) {
+    if (this.authService.isAuthenticated()) {
       debugger;
       if (this.authService.currentUser.fullAccess) {
         return true;
